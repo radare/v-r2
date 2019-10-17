@@ -1,1 +1,2 @@
-# v-r2
+# radare2 bindings for V
+
