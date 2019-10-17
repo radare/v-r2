@@ -4,7 +4,7 @@ This repository contains the initial bindings of r2 for the V programming langua
 
 ## Installation
 
-```
+```go
 $ v install radare.r2
 $ v
 >>> import radare.r2
@@ -15,7 +15,7 @@ $ v
 
 ## Example
 
-```
+```go
 module main
 
 import radare.r2
