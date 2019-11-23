@@ -4,12 +4,14 @@ module r2
 
 #include <r_core.h>
 
-struct R2 {}
+pub struct R2 {}
 
 pub fn (core &R2)cmd(s string) string {
 	o := C.r_core_cmd_str (core, s.str)
 	strs := string(byteptr(o))
-	free(o)
+	unsafe {
+		free(o)
+	}
 	return strs
 }
 
