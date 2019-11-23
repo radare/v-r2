@@ -8,6 +8,9 @@ pub struct R2 {}
 
 pub fn (core &R2)cmd(s string) string {
 	o := C.r_core_cmd_str (core, s.str)
+	if isnil(o) {
+		return ''
+	}
 	strs := string(byteptr(o))
 	unsafe {
 		free(o)
