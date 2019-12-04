@@ -6,6 +6,10 @@ module r2
 
 pub struct R2 {}
 
+fn C.r_core_cmd_str(voidptr, string) byteptr
+fn C.r_core_free(voidptr)
+fn C.r_core_new() voidptr
+
 pub fn (core &R2)cmd(s string) string {
 	o := C.r_core_cmd_str (core, s.str)
 	if isnil(o) {
