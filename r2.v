@@ -15,7 +15,7 @@ pub fn (core &R2)cmd(s string) string {
 	if isnil(o) {
 		return ''
 	}
-	strs := string(byteptr(o))
+	strs := tos_clone(string(o))
 	unsafe {
 		free(o)
 	}
