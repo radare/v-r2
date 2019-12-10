@@ -15,7 +15,7 @@ pub fn (core &R2)cmd(s string) string {
 	if isnil(o) {
 		return ''
 	}
-	strs := tos_clone(string(o))
+	strs := tos_clone(o)
 	unsafe {
 		free(o)
 	}
