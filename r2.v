@@ -10,16 +10,21 @@ fn C.r_core_cmd_str(voidptr, string) byteptr
 fn C.r_core_free(voidptr)
 fn C.r_core_new() voidptr
 fn C.r_cons_is_breaked() bool
+fn C.r_cons_break_push(a, b voidptr) bool
+fn C.r_cons_break_pop() bool
 
 pub fn (core &R2)cmd(s string) string {
+	C.r_cons_break_push(nil, nil)
 	o := C.r_core_cmd_str (core, s.str)
 	if isnil(o) {
+		C.r_cons_break_pop()
 		return ''
 	}
 	strs := tos_clone(o)
 	unsafe {
 		free(o)
 	}
+	C.r_cons_break_pop()
 	return strs
 }
 
