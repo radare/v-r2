@@ -36,7 +36,7 @@ pub fn (core &R2)break_begin() {
 	C.r_cons_break_push(voidptr(0), voidptr(0))
 }
 
-pub fn (core &R2)break_end() {
+pub fn (core &R2)break_end() bool {
 	C.r_cons_break_pop()
 	return C.r_cons_is_breaked()
 }
