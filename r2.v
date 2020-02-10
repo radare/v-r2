@@ -32,7 +32,12 @@ pub fn (core &R2)str() string {
 	return i64(core).str()
 }
 
-pub fn (core &R2)is_breaked() bool{
+pub fn (core &R2)break_begin() {
+	C.r_cons_break_begin(voidptr(0), voidptr(0))
+}
+
+pub fn (core &R2)break_end() {
+	C.r_cons_break_end()
 	return C.r_cons_is_breaked()
 }
 
