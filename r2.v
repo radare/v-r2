@@ -14,7 +14,7 @@ fn C.r_cons_break_push(a, b voidptr) bool
 fn C.r_cons_break_pop() bool
 
 pub fn (core &R2)cmd(s string) string {
-	C.r_cons_break_push(nil, nil)
+	C.r_cons_break_push(voidptr(0), voidptr(0))
 	o := C.r_core_cmd_str (core, s.str)
 	if isnil(o) {
 		C.r_cons_break_pop()
