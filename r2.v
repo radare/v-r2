@@ -9,6 +9,7 @@ pub struct R2 {}
 fn C.r_core_cmd_str(voidptr, string) byteptr
 fn C.r_core_free(voidptr)
 fn C.r_core_new() voidptr
+fn C.r_cons_is_breaked() bool
 
 pub fn (core &R2)cmd(s string) string {
 	o := C.r_core_cmd_str (core, s.str)
@@ -24,6 +25,10 @@ pub fn (core &R2)cmd(s string) string {
 
 pub fn (core &R2)str() string {
 	return i64(core).str()
+}
+
+pub fn (core &R2)is_breaked() bool{
+	return C.r_cons_is_breaked()
 }
 
 pub fn (core &R2)free() {
