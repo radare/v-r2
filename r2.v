@@ -33,11 +33,11 @@ pub fn (core &R2)str() string {
 }
 
 pub fn (core &R2)break_begin() {
-	C.r_cons_break_begin(voidptr(0), voidptr(0))
+	C.r_cons_break_push(voidptr(0), voidptr(0))
 }
 
 pub fn (core &R2)break_end() {
-	C.r_cons_break_end()
+	C.r_cons_break_pop()
 	return C.r_cons_is_breaked()
 }
 
