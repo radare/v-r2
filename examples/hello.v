@@ -1,6 +1,6 @@
-module r2
+import radare.r2
 
-fn test_main() {
+fn main() {
   c := r2.new()
   print(c.cmd('?E Hello'))
   c.free()
