@@ -1,4 +1,4 @@
-R2_LIBEXT=so #$(shell r2 -H R2_LIBEXT)
+R2_LIBEXT=$(shell r2 -H R2_LIBEXT)
 R2_USER_PLUGINS=$(shell r2 -H R2_USER_PLUGINS)
 VFLAGS?=--enable-globals
 
