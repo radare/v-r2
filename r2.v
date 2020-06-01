@@ -4,8 +4,9 @@ module r2
 
 #include <r_core.h>
 
-pub struct R2 {}
+pub struct RCore {}
 
+fn C.r_core_cmd(core voidptr, cmd byteptr, log bool)
 fn C.r_core_cmd_str(voidptr, string) byteptr
 fn C.r_core_free(voidptr)
 fn C.r_core_new() voidptr
@@ -13,7 +14,11 @@ fn C.r_cons_is_breaked() bool
 fn C.r_cons_break_push(a, b voidptr) bool
 fn C.r_cons_break_pop() bool
 
-pub fn (core &R2)cmd(s string) string {
+pub fn cast(p voidptr) &RCore {
+	return &RCore(p)
+}
+
+pub fn (core &RCore)cmd(s string) string {
 	C.r_cons_break_push(voidptr(0), voidptr(0))
 	o := C.r_core_cmd_str (core, s.str)
 	if isnil(o) {
@@ -28,23 +33,23 @@ pub fn (core &R2)cmd(s string) string {
 	return strs
 }
 
-pub fn (core &R2)str() string {
+pub fn (core &RCore)str() string {
 	return i64(core).str()
 }
 
-pub fn (core &R2)break_begin() {
+pub fn (core &RCore)break_begin() {
 	C.r_cons_break_push(voidptr(0), voidptr(0))
 }
 
-pub fn (core &R2)break_end() bool {
+pub fn (core &RCore)break_end() bool {
 	C.r_cons_break_pop()
 	return C.r_cons_is_breaked()
 }
 
-pub fn (core &R2)free() {
+pub fn (core &RCore)free() {
 	C.r_core_free (core)
 }
 
-pub fn new() &R2 {
-	return &R2(C.r_core_new ())
+pub fn new() &RCore {
+	return &RCore(C.r_core_new ())
 }

@@ -3,7 +3,7 @@ R2_USER_PLUGINS=$(shell r2 -H R2_USER_PLUGINS)
 VFLAGS?=--enable-globals
 
 all:
-	v $(VFLAGS) -shared plugin.v
+	-v $(VFLAGS) -shared plugin.v
 	v -shared -o a.c plugin.v
 	$(MAKE) install
 
