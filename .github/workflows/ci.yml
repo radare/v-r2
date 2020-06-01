@@ -14,23 +14,27 @@ jobs:
     strategy:
       matrix:
         node_version: ['12']
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest] # macos-latest]
 
     steps:
     - uses: actions/checkout@v2
     - name: Install V
       run: |
-        apt update && apt install radare2-dev radare2
+        wget http://radare.mikelloc.com/get/4.5.0-git/radare2-dev_4.5.0-git_amd64.deb
+        wget http://radare.mikelloc.com/get/4.5.0-git/radare2_4.5.0-git_amd64.deb
+        sudo dpkg -i *.deb
+        sudo apt update > /dev/null
+        sudo apt install pkg-config
         pushd /tmp
         git clone https://github.com/vlang/v
         cd v 
         make -j2
         popd
-    - name: Run toxml tests
+    - name: Run v-r2 tests
       run: |
         export PATH="/tmp/v:$PATH"
         pwd
         v -stats test .
         make -C examples/plugin
-	r2 -qcv -
+        r2 -qcv -
 
