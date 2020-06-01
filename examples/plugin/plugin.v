@@ -3,6 +3,8 @@ module vr2
 import json
 import r2
 
+#define _const_vr2__radare_plugin radare_plugin
+
 // implementation
 
 struct R2ijcore {
@@ -23,6 +25,7 @@ fn plugin_call(coreptr voidptr, cmd byteptr) int {
 	if c.starts_with('v') {
 		res := core.cmd('?e hello')
 		eprintln('res = $res')
+		eprintln('res = $res')
 		// eprintln('Intercepted!')
 		C.r_core_cmd (core, '?E CLIPPY', 0)
 		ij := string(C.r_core_cmd_str (core, 'ij'))
@@ -38,8 +41,7 @@ fn plugin_call(coreptr voidptr, cmd byteptr) int {
 
 // definition
 
-#include "@VROOT/examples/plugin/plugin.v.c"
-/*
+// #include "@VROOT/examples/plugin/plugin.v.c"
 pub const (
 	dummy_core_plugin = C.r_core_plugin_t {
 		name: 'vr'.str
@@ -53,4 +55,3 @@ pub const (
 		data: &dummy_core_plugin
 	}
 )
-*/

@@ -1,3 +1,4 @@
+#if 0
 #include <r_core.h>
 #include <r_lib.h>
 
@@ -28,3 +29,4 @@ RLibStruct radare_plugin = {
         .version = R2_VERSION
 };
 
+#endif
