@@ -8,6 +8,7 @@ all:
 	$(MAKE) install
 
 install:
+	mkdir -p $(R2_USER_PLUGINS)
 	cp -f plugin.$(R2_LIBEXT) $(R2_USER_PLUGINS)
 
 uninstall:
