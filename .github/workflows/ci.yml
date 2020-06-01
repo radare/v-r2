@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: ['12']
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install V
+      run: |
+        apt update && apt install radare2-dev radare2
+        pushd /tmp
+        git clone https://github.com/vlang/v
+        cd v 
+        make -j2
+        popd
+    - name: Run toxml tests
+      run: |
+        export PATH="/tmp/v:$PATH"
+        pwd
+        v -stats test .
+        make -C examples/plugin
+	r2 -qcv -
+
