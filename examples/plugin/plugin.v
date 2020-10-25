@@ -20,10 +20,11 @@ pub struct RCore {}
 
 fn plugin_call(coreptr voidptr, cmd byteptr) int {
 	core := r2.cast(coreptr)
-	c := string(cmd)
+	c := cmd.str()
 	if c.starts_with('v') {
 		core.cmd('?E Clippy')
-		a := json.decode(R2ij, core.cmd('ij')) or {
+		ij := core.cmd('ij')
+		a := json.decode(R2ij, ij) or {
 			eprintln ('failed to decode ij JSON')
 			return 0
 		}
