@@ -29,3 +29,18 @@ fn main() {
 }
 
 ```
+
+or spawning:
+
+```go
+module main
+
+import radare.r2
+
+fn main() {
+  mut c := r2.spawn('/bin/ls', '') or { panic(err) }
+  print(c.cmd('?E Hello'))
+  c.free()
+}
+
+```

@@ -1,6 +1,7 @@
 module r2
 
-#pkgconfig --cflags --libs r_core
+#pkgconfig r_core
+
 #include <r_core.h>
 
 pub struct RCore {}

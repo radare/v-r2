@@ -1,14 +1,13 @@
 module main
 
-import r2.pipe
+import radare.r2pipe
 
 fn main() {
-	r2p := pipe.open('r2 -q0 /bin/ls')
-	if r2p == 0 {
+	mut r2p := r2pipe.spawn('/bin/ls', '') or {
 		eprintln('Cannot spawn')
 		exit(1)
 	}
 	hello_world := r2p.cmd('?e hello world')
-	eprintln('hello_world $hello_world')
-	r2p.close()
+	eprintln('message: $hello_world')
+	r2p.free()
 }
