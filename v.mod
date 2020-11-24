@@ -1,7 +1,7 @@
 Module {
 	name: 'r2'
 	author: 'pancake'
-	version: '0.3.2'
+	version: '0.4.0'
 	repo_url: 'https://github.com/radare/v-r2'
 	vcs: 'git'
 	tags: ['radare2', 'reversing']
