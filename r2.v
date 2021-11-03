@@ -7,7 +7,7 @@ module r2
 pub struct RCore {}
 
 fn C.r_core_cmd(core voidptr, cmd byteptr, log bool)
-fn C.r_core_cmd_str(voidptr, string) byteptr
+fn C.r_core_cmd_str(voidptr, byteptr) byteptr
 fn C.r_core_free(voidptr)
 fn C.r_core_new() voidptr
 fn C.r_cons_is_breaked() bool
