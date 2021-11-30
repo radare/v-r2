@@ -4,27 +4,28 @@ module r2
 #include <r_core.h>
 #include <r_lib.h>
 
-type CorePluginInitCallback = fn(voidptr,byteptr) int
-type CorePluginCallCallback = fn(voidptr,byteptr) int
+type CorePluginInitCallback = fn (voidptr, byteptr) int
+
+type CorePluginCallCallback = fn (voidptr, byteptr) int
 
 pub struct C.r_lib_struct_t {
-	@type int
-	data voidptr
+	@type   int
+	data    voidptr
 	version byteptr
 	// free voidptr
 	pkgname byteptr
 }
 
 pub struct C.r_core_plugin_t {
-	name byteptr
-	desc byteptr
+	name    byteptr
+	desc    byteptr
 	license byteptr
-	init CorePluginInitCallback
-	call CorePluginCallCallback
+	init    CorePluginInitCallback
+	call    CorePluginCallCallback
 }
 
 /*
-// example 
+// example
 const (
 	dummy_core_plugin = C.r_core_plugin_t {
 		name: 'vr'.str

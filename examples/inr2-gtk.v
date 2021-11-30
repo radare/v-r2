@@ -1,4 +1,5 @@
 module mein
+
 // import r2.pipe
 import zenith391.vgtk3.gtk
 
@@ -23,7 +24,7 @@ pub fn entry(core &R2) {
 	label := gtk.new_label('Hello VGtk World')
 	vbox.pack_start(label, true, true, 0)
 
-	on_click := fn(w gtk.Button, d voidptr) {
+	on_click := fn (w gtk.Button, d voidptr) {
 		r2 := &R2(d)
 		_ := r2.cmd('aaa')
 	}

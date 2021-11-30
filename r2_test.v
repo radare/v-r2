@@ -1,7 +1,7 @@
 module r2
 
 fn test_main() {
-  c := r2.new()
-  print(c.cmd('?E Hello'))
-  c.free()
+	c := new()
+	print(c.cmd('?E Hello'))
+	c.free()
 }
