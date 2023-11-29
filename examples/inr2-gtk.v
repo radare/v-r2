@@ -1,4 +1,4 @@
-module mein
+module main
 
 // import r2.pipe
 import zenith391.vgtk3.gtk
