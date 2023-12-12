@@ -2,38 +2,29 @@ name: CI
 
 on:
   push:
-    branches:
-    - master
   pull_request:
-    branches:
-    - master
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node_version: ['12']
-        os: [ubuntu-latest] # macos-latest]
-
+    name: build
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Install radare2
+      run: |
+        git clone --depth=1 https://github.com/radareorg/radare2
+        radare2/sys/install.sh
     - name: Install V
       run: |
-        wget http://radare.mikelloc.com/get/4.5.0-git/radare2-dev_4.5.0-git_amd64.deb
-        wget http://radare.mikelloc.com/get/4.5.0-git/radare2_4.5.0-git_amd64.deb
-        sudo dpkg -i *.deb
-        sudo apt update > /dev/null
-        sudo apt install pkg-config
-        pushd /tmp
         git clone https://github.com/vlang/v
         cd v 
         make -j2
-        popd
+        sudo ./v symlink
     - name: Run v-r2 tests
       run: |
         export PATH="/tmp/v:$PATH"
         pwd
+        make
         v -stats test .
         make -C examples/plugin
         r2 -qcv -
