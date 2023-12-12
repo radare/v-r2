@@ -1,0 +1,2 @@
+all:
+	v -shared .
