@@ -1,6 +1,6 @@
 # radare2 bindings for V
 
-![CI](https://github.com/radare/v-r2/workflows/CI/badge.svg)
+[![CI](https://github.com/radare/v-r2/actions/workflows/ci.yml/badge.svg)](https://github.com/radare/v-r2/actions/workflows/ci.yml)
 
 This repository contains the initial bindings of r2 for the V programming language.
 
