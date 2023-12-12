@@ -15,7 +15,9 @@ fn C.r_cons_break_push(a voidptr, b voidptr) bool
 fn C.r_cons_break_pop() bool
 
 pub fn cast(p voidptr) &RCore {
-	return &RCore(p)
+	unsafe {
+		return &RCore(p)
+	}
 }
 
 pub fn (core &RCore) cmd(s string) string {
@@ -51,5 +53,7 @@ pub fn (core &RCore) free() {
 }
 
 pub fn new() &RCore {
-	return &RCore(C.r_core_new())
+	unsafe {
+		return &RCore(C.r_core_new())
+	}
 }
