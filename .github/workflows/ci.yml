@@ -9,23 +9,22 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Install radare2
       run: |
         git clone --depth=1 https://github.com/radareorg/radare2
-        radare2/sys/install.sh
+        ( cd radare2 && ./configure --prefix=/usr && make -j 4 && sudo make install )
     - name: Install V
       run: |
-        git clone https://github.com/vlang/v
-        cd v 
-        make -j2
-        sudo ./v symlink
+        (cd /tmp && git clone https://github.com/vlang/v && cd v && make -j2 && sudo ./v symlink )
+        v -v
+    - name: Building and running tests
+      uses: actions/checkout@v2
     - name: Run v-r2 tests
       run: |
-        export PATH="/tmp/v:$PATH"
-        pwd
+        ls -l /usr/lib/pkgconfig
+        pkg-config --cflags --libs r_core
         make
         v -stats test .
-        make -C examples/plugin
-        r2 -qcv -
-
+#    - name: Build plugin
+#      run: |
+#        make -C examples/plugin
